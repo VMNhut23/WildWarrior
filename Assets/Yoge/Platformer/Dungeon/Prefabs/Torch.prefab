@@ -4904,6 +4904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5935204344510158543}
+  - component: {fileID: 7744206487364091266}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -4930,6 +4931,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &7744206487364091266
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935204344510158528}
+  m_Enabled: 1
+  m_SortingLayerID: -772869857
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &5935204345046072561
 GameObject:
   m_ObjectHideFlags: 0

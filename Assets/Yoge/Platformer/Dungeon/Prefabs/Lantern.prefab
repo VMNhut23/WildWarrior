@@ -4904,6 +4904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 449319122050567847}
+  - component: {fileID: 3781579837554078423}
   m_Layer: 0
   m_Name: Lantern
   m_TagString: Untagged
@@ -4928,6 +4929,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &3781579837554078423
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449319122050567844}
+  m_Enabled: 1
+  m_SortingLayerID: -772869857
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &449319122343228755
 GameObject:
   m_ObjectHideFlags: 0
