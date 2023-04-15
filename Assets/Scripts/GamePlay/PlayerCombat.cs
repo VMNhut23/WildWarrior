@@ -9,17 +9,32 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public int attackDamage = 30;
+
+    private float attackRate = 2f;
+    float nextAttackTime = 0f;
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Time.time >= nextAttackTime)
         {
-            Attack1();
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Attack1();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.G)) 
+        if (Time.time >= nextAttackTime)
         {
-            Attack2();
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Attack2();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
+
+
     }
     void Attack1()
     {
@@ -29,7 +44,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit" + enemy.name);
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
     }
     void Attack2()
@@ -39,7 +54,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit" + enemy.name);
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
     }
     void OnDrawGizmosSelected()

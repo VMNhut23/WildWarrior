@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float playerSpeed;
     [SerializeField] private float jumpHeight;
 
     private float dirX;
-    private bool grounded;
+    private bool isDoubleJump;
     private enum MovementState { Idle, Running, Jumping, Falling };
     private MovementState movementState;
     private void Awake()
@@ -33,10 +34,18 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jumping()
     {
-        if (Input.GetButtonDown("Jump") && grounded)
-        {           
-             grounded = false;
-             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);         
+        if (IsGrounded() && !Input.GetButton("Jump"))
+        {
+            isDoubleJump = false;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (IsGrounded() || isDoubleJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+                isDoubleJump = !isDoubleJump;
+                animator.SetBool("DoubleJump", !isDoubleJump);
+            }
         }
     }
     private void Moving()
@@ -74,11 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetInteger("State", (int)movementState);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool IsGrounded()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-        }
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
     }
 }
